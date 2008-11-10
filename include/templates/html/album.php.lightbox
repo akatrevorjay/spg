@@ -1,0 +1,61 @@
+<?php
+/*
+    spg - Simple (PHP|Photo) Gallery)                                             ~trevorj <[trevorjoynson@gmail.com]>
+
+    Copyright 2006 Trevor Joynson
+
+    This file is part of spg.
+
+    spg is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by          the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.                                           
+    spg is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with spg; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+*/
+
+if (!defined('SPG_VERSION')) { die; };
+$config['root_uri'] = '/html';
+
+?>
+<html>
+<head>
+	<title>intheskywithdiamonds | photo gallery | <?= $root_album->path ?></title>
+	<link rel="stylesheet" href="/include/index.css" type="text/css">
+    <!-- begin lightbox -->
+	<link rel="stylesheet" href="/include/lightbox/lightbox.css" type="text/css"/>
+    <script type="text/javascript" src="/include/lightbox/lightbox.js"></script>
+    <!-- end lightbox -->
+</head>
+<body>
+<div id="content">
+	<div id="header"><h1>photo gallery</h1><h2><a href="/xml/album<?=$cln_album?>">xml</a></h2></div>
+<div id="albums">
+<?php
+
+foreach ($root_album->subalbums as $i => $album) {
+	echo '<a href="'.$config['root_uri'].'/album'.$album->path.'">'.$album->name.'</a><br />';
+}
+
+?>
+</div>
+<div id="photos">
+<?php
+
+if (count($root_album->photos)===0) {
+//	echo "<script>document.getElementById('photos').visibility = false;</script>";
+} else {
+	foreach ($root_album->photos as $i => $photo) {
+		echo '<a rel="lightbox" href="/files'.$root_album->path.$photo->name.'">'.$photo->name.'</a><br />';
+	}
+}
+
+?>
+</div></div>
+</body>
+</html>

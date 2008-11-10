@@ -1,0 +1,16 @@
+RewriteEngine On
+
+RewriteBase /
+
+
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+
+# default
+#RewriteRule ^((?:album|photo)/.*)$ xml/$1
+
+# this fixes includes temporarily
+RewriteRule ^((?:json|xml|html)?)/include/(.*)$ include/$2
+
+RewriteRule ^((?:json|xml|html)?)/?album(\/[0-9A-Za-z\/\-]*)$ index.php?t=$1&album=$2
+
