@@ -90,7 +90,7 @@ Class Album {
 			$path = $this->path.$file;
 			$fspath = $GLOBALS['config']['files_path'].$path;
 
-			if ($file == '.' || $file == '..') {
+			if ( substr($file, 0, 1) == '.' ) {
             } elseif (is_dir($fspath.'/.')) {
                 $this->subalbums[] = new Album($path, $file);
 			} else {
