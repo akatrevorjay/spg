@@ -2,9 +2,10 @@
 
 # Are we using SSL?
 $proto = ($_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+$host = ($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'gallery.skywww.net';
 
 $config = array(
-	root_url    		=> $proto.'://gallery.intheskywithdiamonds.net',
+	root_url    		=> $proto.'://'.$host,
 
 	files_path			=> '/var/www/gallery/htdocs/files',
 
