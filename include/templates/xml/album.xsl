@@ -27,7 +27,7 @@
 <html lang="en" xml:lang="en">
 <head>
 	<title>skywww media | <xsl:value-of select="stats/@path"/></title>
-	<link rel="stylesheet" href="{stats/@root_url}/include/index.css" type="text/css" />
+	<link rel="stylesheet" href="{stats/@root_url}/{stats/@template_path}common-html_xml.css" type="text/css" />
     <!-- begin multibox -->
         <link href="{stats/@root_url}/include/multibox-1.3.1/multibox.css" rel="stylesheet" type="text/css" />
         <!--[if lte IE 6]><link rel="stylesheet" href="{stats/@root_url}/include/multibox-1.3.1/ie6.css" type="text/css" media="all" /><![endif]-->
