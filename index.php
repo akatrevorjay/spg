@@ -24,7 +24,7 @@
 */
 
 // Define this so our children won't cry on contact
-define('SPG_VERSION', 0.1);
+define('SPG_VERSION', 0.2);
 
 // Move little piggies, move!
 require('include/config.php');
@@ -32,7 +32,6 @@ require('include/classes.php');
 
 // init our page gen timer now that we've loaded our classes
 $timer = new pGenTimer();
-
 
 // Do we have a requested album? If so, is it sanitized?
 $cln_album = ( preg_match('/^\/[0-9A-Za-z\/\-\_]+$/', $_REQUEST['album'])) ? $_REQUEST['album'] : '/';
@@ -42,7 +41,6 @@ $root_album = new Album($cln_album);
 
 // Is the given template sanitized?
 $cln_t = ( preg_match('/^[0-9A-Za-z\-\_]+$/', $_REQUEST['t']) ) ? $_REQUEST['t'] : $config['default_template'];
-
 
 if (   is_dir(     $config['templates_path'].'/'.$cln_t)
 	&& file_exists($config['templates_path'].'/'.$cln_t.'/album.php')

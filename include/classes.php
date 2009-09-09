@@ -7,7 +7,8 @@
     This file is part of spg.
 
     spg is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by          the Free Software Foundation; either version 2 of the License, or
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
     (at your option) any later version.                                           
     spg is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -38,6 +39,9 @@ Class Photo extends Item {
 Class Video extends Item {
 }
 
+Class Flash extends Item {
+}
+
 Class Album {
 	public $name;
 	//public $desc;
@@ -46,6 +50,7 @@ Class Album {
 	
 	public $photos = array();
 	public $videos = array();
+	public $flashs = array();
 	public $subalbums = array();
 
 	// We were just instanced.
@@ -93,17 +98,20 @@ Class Album {
 			if ( substr($file, 0, 1) == '.' ) {
             } elseif (is_dir($fspath.'/.')) {
                 $this->subalbums[] = new Album($path, $file);
-			} else {
-            	if ($this->name=='root' && is_file($fspath)) {
-#					$info = new finfo(FILEINFO_MIME);
-#					$mimetype = $info->file($fspath);
+	    } else {
+			if ($this->name=='root' && is_file($fspath)) {
+#				$info = new finfo(FILEINFO_MIME);
+#				$mimetype = $info->file($fspath);
 
-					if (preg_match($GLOBALS['config']['photo_regex'], $file, $match)) {
-#					if ($GLOBALS['config']['photo_mimetypes'][$mimetype]) {
-						$this->photos[] = new Photo($path, $match[1]);
+				if (preg_match($GLOBALS['config']['photo_regex'], $file, $match)) {
+#				if ($GLOBALS['config']['photo_mimetypes'][$mimetype]) {
+					$this->photos[] = new Photo($path, $match[1]);
 #					} elseif ($GLOBALS['config']['video_mimetypes'][$mimetype]) {
 					} elseif (preg_match($GLOBALS['config']['video_regex'], $file, $match)) {
 						$this->videos[] = new Video($path, $match[1]);
+#					} elseif ($GLOBALS['config']['flash_mimetypes'][$mimetype]) {
+					} elseif (preg_match($GLOBALS['config']['flash_regex'], $file, $match)) {
+						$this->flashs[] = new Flash($path, $match[1]);
 					}
 				}
 			}
